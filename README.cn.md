@@ -13,6 +13,7 @@
 
 ### reconnect_interval
 重连间隔，单位秒
+
 ### base_oid
 注册至snmpd的基础oid
 
@@ -91,7 +92,7 @@ list必须指定oid，不适用exporters.items.oid
 ## 示例
 ```toml
 [snmpd]
-address = "127.0.0.1:705"
+address = "127.0.0.1:161"
 timeout = 10
 reconnect_interval = 10
 base_oid = "1.3.6.1.4.1.47032"
@@ -99,46 +100,46 @@ scan_interval = 10
 
 [[exporters]]
 origin = "exporter"
-server = "http://127.0.0.1:10001/metrics"
+server = "http://127.0.0.1:9100/metrics"
 
     [[exporters.items]]
-    oid = "1.3.6.1.4.1.47032.4.1.0"
-    name = "go_gc_duration_seconds"
+    oid = "1.3.6.1.4.1.47032.1.1"
+    name = "metric_name_1"
     labels = []
     data_type = "TABLE"
 
     [[exporters.items.table]]
-    oid = "1.3.6.1.4.1.47032.4.1.0.1.1"
-    label = "value"
+    oid = "1.3.6.1.4.1.47032.1.1.1.1"
+    label = "label_name_1"
     value_type = "STRING"
 
     [[exporters.items.table]]
-    oid = "1.3.6.1.4.1.47032.4.1.0.1.3"
-    label = "quantile"
+    oid = "1.3.6.1.4.1.47032.1.1.1.3"
+    label = "label_name_2"
     value_type = "STRING"
 
     [[exporters.items]]
-    oid = "1.3.6.1.4.1.47032.4.1.1"
-    name = "go_memstats_heap_objects"
+    oid = "1.3.6.1.4.1.47032.1.2"
+    name = "metric_name_2"
     labels = []
     is_table = false
     value_type = "STRING"
 
     [[exporters.items]]
-    oid = "1.3.6.1.4.1.47032.4.1.1"
-    name = "device_ha_info"
+    oid = "1.3.6.1.4.1.47032.1.3"
+    name = "metric_name_3"
     labels = []
-    value_label = "ha_role"
+    value_label = "label_name"
     value_type = "STRING"
 
 [[exporters]]
 origin = "exporter"
-server = "http://127.0.0.1:10001/metrics"
+server = "http://127.0.0.1:9100/metrics"
 
     [[exporters.items]]
-    oid = "1.3.6.1.4.1.47032.4.1.2"
-    name = "node_cpu_seconds_total"
-    labels = ["cpu", "0"]
+    oid = "1.3.6.1.4.1.47032.1.4"
+    name = "metric_name_4"
+    labels = ["label_name", "label_value"]
     value_type = "STRING"
 
 [[exporters]]
@@ -146,23 +147,23 @@ origin = "prometheus"
 server = "http://127.0.0.1:9090"
 
     [[exporters.items]]
-    oid = "1.3.6.1.4.1.47032.4.1.3"
-    query = "service_status{instance=\"192.168.141.13:443\"}"
+    oid = "1.3.6.1.4.1.47032.1.5"
+    query = "metric_name_5{label=\"label_value"}"
     data_type = "TABLE"
 
     [[exporters.items.table]]
-    oid = "1.3.6.1.4.1.47032.4.1.3.1.1"
-    label = "name"
+    oid = "1.3.6.1.4.1.47032.1.5.1.1"
+    label = "label_name"
     value_type = "STRING"
 
     [[exporters.items]]
-    oid = "1.3.6.1.4.1.47032.4.1.4"
-    query = "dns_request{instance=\"192.168.141.13:443\"}"
+    oid = "1.3.6.1.4.1.47032.1.6"
+    query = "metric_name_6{label=\"label_value\"}"
     data_type = "LIST"
 
     [[exporters.items.table]]
-    oid = "1.3.6.1.4.1.47032.4.1.4.1.1"
-    labels = ["type", "aaaa", "job", "ddi"]
+    oid = "1.3.6.1.4.1.47032.1.6.1.1"
+    labels = ["label_name_1", "label_value_1", "label_name_2", "label_value_2"]
     value_type = "CEILINT"
 ```
 
