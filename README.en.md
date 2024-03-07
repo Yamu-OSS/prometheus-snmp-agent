@@ -86,10 +86,10 @@ Available list.labels same as item.labels.
 
 Available list.value_type same as value_type.
 
-### 注意
+### Note
 This component does not support collecting untyped metrics in Prometheus.
 
-## 示例
+## Example
 ```toml
 [snmpd]
 address = "127.0.0.1:161"
